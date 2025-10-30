@@ -13,4 +13,4 @@ RUN opentelemetry-bootstrap -a install
 
 ENV RECOMMENDATION_PORT 1010
 
-ENTRYPOINT ["python", "recommendation_server.py"]
+ENTRYPOINT ["python", "recommendation_server.py"] 
