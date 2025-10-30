@@ -93,12 +93,14 @@ jobs:
                sed -i "s|image: .*|image: ${{ secrets.DOCKER_USERNAME }}/product-catalog:${{github.run_id}}|" kubernetes/productcatalog/deploy.yaml
         
         - name: Commit and push changes
+          env:
+            PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
           run: |
             git config --global user.email "abhishek@gmail.com"
             git config --global user.name "Abhishek Veeramalla"
             git add kubernetes/productcatalog/deploy.yaml
             git commit -m "[CI]: Update product catalog image tag"
-            git push
+            git push https://x-access-token:${PAT_TOKEN}@github.com/janars24/open-tele-demo.git HEAD:main --force-with-lease
 
       
         
